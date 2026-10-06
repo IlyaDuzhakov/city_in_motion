@@ -1,0 +1,11 @@
+.header_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 72px;
+  padding: 16px 24px;
+}
+.brand {
+    display: flex;
+    align-items: center;
+}
