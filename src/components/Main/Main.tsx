@@ -1,8 +1,12 @@
 import Hero from "../Hero/Hero";
+import RidesSection from "../RidesSection/RidesSection";
 
 const Main = () => {
   return (
-    <Hero />
+    <main>
+      <Hero />
+      <RidesSection />
+    </main>
   );
 };
 

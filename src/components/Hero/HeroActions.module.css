@@ -1,0 +1,30 @@
+.wrapper {
+  margin-top: 24px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.stats {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stats strong {
+  font-size: 18px;
+}
+
+.stats span {
+  font-size: 12px;
+  color: #87958D;
+}

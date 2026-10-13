@@ -1,4 +1,24 @@
 :root {
     --bg-page: #0B0F0D;
-    --accent-color: #63F59A;
+    --bg-surface: #121815;
+    --bg-elevated: #18211D;
+    --bg-interactive: #1E2924;
+
+    --accent: #63F59A;
+    --accent-hover: #86FFB3;
+    --accent-pressed: #36D975;
+    --accent-soft: #173C29;
+
+    --border-strong: #3A4C43;
+
+    --error: #FF6B78;
+    --info: #6CC7FF;
+    --success: var(--accent);
+
+    --text-muted: #6E7E75;
+    --text-primary: #F2F7F4;
+    --text-secondary: #A4B2AA;
+    --warning: #F6C85F;
+
+    --border-subtle: #27352F;
 }

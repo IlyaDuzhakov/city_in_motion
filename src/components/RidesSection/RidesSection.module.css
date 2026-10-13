@@ -1,0 +1,28 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 2px solid var(--border-subtle);
+  background-color: var(--bg-interactive);
+  font-size: 12px;
+}
+
+.nearest_stars {
+    display: flex;
+}
+
+/* .content {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+} */
+
+.ridesList {
+  flex: 2;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
