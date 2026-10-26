@@ -8,6 +8,12 @@
   padding: 0 24px;
 }
 
+input[type=date]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+/* скрытие иконки в input[type=date] */
+
 body {
   background-color: var(--bg-page);
   color: #eaf0ec;

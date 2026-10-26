@@ -1,0 +1,13 @@
+.nameRoute {
+  background-image: url(../../assets/icons/route.png);
+}
+
+.dateRoute {
+    background-image: url(../../assets/icons/calendar.png);
+}
+
+.nameRoute,
+.dateRoute {
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}

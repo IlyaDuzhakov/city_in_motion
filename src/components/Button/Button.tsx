@@ -1,7 +1,8 @@
 import styles from './Button.module.css'
 
+
 interface ButtonProps {
-    children: string;
+    children?: string;
 }
 const Button = ({children}:ButtonProps) => {
     

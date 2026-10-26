@@ -3,6 +3,7 @@ import Badge from "../Badge/Badge";
 import sortAscendingIcon from "../../assets/icons/sort-ascending.png";
 import RideCard from "./RideCard/RideCard";
 import { useSelector } from "react-redux";
+import AddRoute from "../AddRoute/AddRoute";
 
 const RidesSection = () => {
   const routes = useSelector((state) => state);
@@ -10,7 +11,7 @@ const RidesSection = () => {
 
   return (
     <section id="rides" className={styles.section}>
-      <div className="container">
+      {/* <div className="container"> */}
         <div className={styles.nearest_stars}>
           <div>
             <h2>Ближайшие заезды</h2>
@@ -33,8 +34,9 @@ const RidesSection = () => {
               return <RideCard route={route}/>;
             })}
           </div>
+          <AddRoute />
         </div>
-      </div>
+      {/* </div> */}
     </section>
   );
 };

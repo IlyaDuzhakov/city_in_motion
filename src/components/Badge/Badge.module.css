@@ -4,6 +4,18 @@
   gap: 8px;
   padding: 10px 16px;
   border-radius: 999px;
-  background-color: var(--bg-page);
+  /* background-color: var(--bg-page); */
   font-size: 12px;
+}
+
+.badge.easy {
+  background-color: var(--bg-page);
+}
+
+.badge.middle {
+  background-color: #3A2D12;
+}
+
+.badge.hard {
+  background-color: #3A171C;
 }
