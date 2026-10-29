@@ -6,8 +6,26 @@
     background-image: url(../../assets/icons/calendar.png);
 }
 
+.dateNumber {
+     background-image: url(../../assets/icons/hash.png);
+}
+
 .nameRoute,
+.venue,
+.dateNumber,
 .dateRoute {
   background-repeat: no-repeat;
   background-position: right 10px center;
+}
+
+.venue {
+   background-image: url(../../assets/icons/map-pin.png);
+}
+
+.description {
+    display: flex;
+}
+
+.importantDetails {
+    resize: none;
 }
