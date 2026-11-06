@@ -5,7 +5,7 @@
   box-sizing: border-box;
   font-family: "Space Grotesk", sans-serif;
   margin: 0;
-  padding: 0 24px;
+  padding: 0;
 }
 
 input[type=date]::-webkit-calendar-picker-indicator {

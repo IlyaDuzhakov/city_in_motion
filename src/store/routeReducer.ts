@@ -1,42 +1,54 @@
+import { RoutesAction } from "./actions/actionsRoute";
 
-
-export type LevelType = "Легко" | "Средне" | "Сложно"; 
+export type LevelType = "Легко" | "Средне" | "Сложно";
 export interface RouteType {
-    name: string;
-    date: string;
-    distance: number;
-    level: LevelType;
-    start: string;
-    description: string;
-    id: number;
+  name: string;
+  date: string;
+  distance: number;
+  level: LevelType;
+  start: string;
+  description: string;
+  id: number;
 }
 
-const initialState:RouteType[] = [
-    {
+const initialState: RouteType[] = [
+  {
     name: "Moscow - Pekin",
     date: "1991-03-25",
     distance: 10,
     level: "Легко",
-    start: 'Ростокинский акведук',
-    description: 'Спокойный маршрут вдоль воды и парков. Утро без спешки.',
+    start: "Ростокинский акведук",
+    description: "Спокойный маршрут вдоль воды и парков. Утро без спешки.",
     id: 1,
-    },
-    {
+  },
+  {
     name: "Moscow - London",
     date: "1995-01-24",
     distance: 20,
     level: "Средне",
-    start: 'Парк',
-    description: 'описание',
+    start: "Парк",
+    description: "описание",
     id: 2,
-    }
-]
+  },
+];
 
 //@ts-ignore
-export const routeReducer = (state:RouteType[]=initialState, action) => {
-    switch (action.type) {
+export const routeReducer = (
+  state: RouteType[] = initialState,
+  action: RoutesAction,
+) => {
+  switch (action.type) {
+    case "ADD_ROUTE":
+      return [...state, action.payload];
+// в случае добавления маршрута мы возвращаем массив 
+// в который разворачиваем старое состояние ( все маршруты которые были)
+// и добавляем action.payload - новый маршрут
 
-        default: 
-        return state
-    }
-}
+    default:
+      return state;
+  }
+};
+
+// у action есть type - обязательный (что нужно сделать)
+// и payload - данные, которые будут использоваться для изменения состояния
+// не обязательный параметр

@@ -1,26 +1,40 @@
-
 import Button from "../Button/Button";
 import styles from "./AddRoute.module.css";
 import hashIcon from "../../assets/icons/hash.png";
 import hardDrive from "../../assets/icons/hard-drive.png";
 import ButtonLevel from "../Button/ButtonLevel";
-import easyIcon from "../../assets/icons/leaf.png"
-import middleIcon from "../../assets/icons/gauge-speed.png"
-import hardIcon from "../../assets/icons/mountain.png"
-import {LevelType} from "../Button/ButtonLevel"
-import rotateIcon from "../../assets/icons/rotate.png"
-
+import easyIcon from "../../assets/icons/leaf.png";
+import middleIcon from "../../assets/icons/gauge-speed.png";
+import hardIcon from "../../assets/icons/mountain.png";
+import { LevelType } from "../Button/ButtonLevel";
+import rotateIcon from "../../assets/icons/rotate.png";
+import { useState } from "react";
+import { RouteType } from "../../store/routeReducer";
+import { useTypeDispatch } from "../../helpers/redaxHelpers";
 
 const AddRoute = () => {
-    type LevelsType = {
-        img: string;
-        text: LevelType
-    }
-    const levels:LevelsType[] = [
-        {img: easyIcon, text: 'Легко'},
-        {img: middleIcon, text: 'Средне'},
-        {img: hardIcon, text: 'Сложно'}
-    ]
+    const dispatch = useTypeDispatch()
+
+  const [newRoute, setNewRoute] = useState<RouteType>({
+    name: "",
+    date: "",
+    distance: 0,
+    level: "Легко",
+    start: "",
+    description: "",
+    id: Date.now(),
+  });
+  // console.log(newRoute)
+
+  type LevelsType = {
+    img: string;
+    text: LevelType;
+  };
+  const levels: LevelsType[] = [
+    { img: easyIcon, text: "Легко" },
+    { img: middleIcon, text: "Средне" },
+    { img: hardIcon, text: "Сложно" },
+  ];
   return (
     <form>
       <div>
@@ -33,60 +47,101 @@ const AddRoute = () => {
           Название маршрута
           <span>*</span>
         </p>
-        <input className={styles.nameRoute} type="text" placeholder="Пример" />
+        <input
+          className={styles.nameRoute}
+          value={newRoute.name}
+          type="text"
+          placeholder="Пример"
+          onChange={(event) => {
+            setNewRoute({ ...newRoute, name: event.target.value });
+            // мы в объекте поменяем одно свойство а остальное оставляем
+            // без изменений {...newRoute } spread оператор
+          }}
+        />
         <p>Минимум 3 символа</p>
       </div>
       {/* <div> */}
+      <div>
+        <p>
+          Дата старта
+          <span>*</span>
+        </p>
+        <input
+          className={styles.dateRoute}
+          type="date"
+          value={newRoute.date}
+          onChange={(event) => {
+            setNewRoute({ ...newRoute, date: event.target.value });
+          }}
+        />
+        <p>Формат: день месяц год</p>
+      </div>
+      <div>
+        <p>
+          Дистанция, км
+          <span>*</span>
+        </p>
+        <input
+          className={styles.dateNumber}
+          type="number"
+          placeholder="0"
+          value={newRoute.distance}
+          onChange={(event) => {
+            setNewRoute({...newRoute, distance: Number(event.target.value)})
+            // distance: Number(event.target.value)}) 
+            // преобразовываем строку в число
+          }}
+        />
+        <p>Только положительное число</p>
+      </div>
+      <div>
+        <p>Сложность</p>
         <div>
-          <p>
-            Дата старта
-            <span>*</span>
-          </p>
-          <input className={styles.dateRoute} type="date" />
-          <p>Формат: день месяц год</p>
-        </div>
-        <div>
-          <p>
-            Дистанция, км
-            <span>*</span>
-          </p>
-          <input className={styles.dateNumber} type="number" placeholder="0"/>
-          <p>Только положительное число</p>
-        </div>
-        <div>
-          <p>Сложность</p>
-          <div>
-            {
-                levels.map((level)=> {
-                    return <ButtonLevel img={level.img} text={level.text} key={level.img}/>
-                })
-            }
-            {/* <ButtonLevel img={easyIcon} text={'Легко'}/>
+          {levels.map((level) => {
+            return (
+              <ButtonLevel img={level.img} text={level.text} key={level.img} />
+            );
+          })}
+          {/* <ButtonLevel img={easyIcon} text={'Легко'}/>
             <ButtonLevel img={middleIcon} text={'Средне'}/>
             <ButtonLevel img={hardIcon} text={'Сложно'}/> */}
-            <p>Выберите темп и рельеф маршрута</p>
-          </div>
+          <p>Выберите темп и рельеф маршрута</p>
         </div>
-        <div>
-          <p>Место старта</p>
-          <input
-            className={styles.venue}
-            type="text"
-            placeholder="Например, у входа в парк"
-          />
-          <p>Укажите понятный ориентир</p>
-        </div>
-        <div className={styles.description}>
-          <label>Короткое описание</label>
-          <p>0/240</p>
-        </div>
-        <div>
-        <textarea className={styles.importantDetails} placeholder="Опишите темп, покрытие и важные детали маршрута" />
+      </div>
+      <div>
+        <p>Место старта</p>
+        <input
+          className={styles.venue}
+          type="text"
+          placeholder="Например, у входа в парк"
+          value={newRoute.start}
+          onChange={(event) => {
+            setNewRoute({...newRoute, start: event.target.value})
+          }}
+        />
+        <p>Укажите понятный ориентир</p>
+      </div>
+      <div className={styles.description}>
+        <label>Короткое описание</label>
+        <p>0/240</p>
+      </div>
+      <div>
+        <textarea
+          className={styles.importantDetails}
+          placeholder="Опишите темп, покрытие и важные детали маршрута"
+           value={newRoute.description}
+          onChange={(event) => {
+            setNewRoute({...newRoute, description: event.target.value})
+          }}
+        />
         <p>До 240 символов</p>
-        </div>
+      </div>
       {/* </div> */}
       <Button img={rotateIcon}>Очистить</Button>
-      <Button>Добавить</Button>
+      <button onClick={(e)=> {
+        e.preventDefault()
+        dispatch({type: 'ADD_ROUTE', payload: newRoute})
+      }}>Добавить</button>
       <div>
         <img src={hardDrive} alt="hardDrive" />
         <p>Данные хранятся локально и восстановятся после перезагрузки.</p>

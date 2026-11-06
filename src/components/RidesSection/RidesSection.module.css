@@ -13,6 +13,10 @@
     display: flex;
 }
 
+.content {
+  display: flex;
+}
+
 /* .content {
   display: flex;
   align-items: flex-start;
