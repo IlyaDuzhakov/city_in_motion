@@ -39,7 +39,11 @@ export const routeReducer = (
 ) => {
   switch (action.type) {
     case "ADD_ROUTE":
+      localStorage.setItem('addRoutes', JSON.stringify([...state, action.payload]))
+      // мы можем работать с localStorage прямо из REDUX
       return [...state, action.payload];
+    case "GET_ROUTES":
+      return [...state]
 // в случае добавления маршрута мы возвращаем массив 
 // в который разворачиваем старое состояние ( все маршруты которые были)
 // и добавляем action.payload - новый маршрут

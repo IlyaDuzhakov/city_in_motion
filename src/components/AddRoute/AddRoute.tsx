@@ -11,10 +11,13 @@ import rotateIcon from "../../assets/icons/rotate.png";
 import { useState } from "react";
 import { RouteType } from "../../store/routeReducer";
 import { useTypeDispatch } from "../../helpers/redaxHelpers";
+// import { useSelector } from "react-redux";
 
 const AddRoute = () => {
-    const dispatch = useTypeDispatch()
+  const dispatch = useTypeDispatch();
 
+  
+   
   const [newRoute, setNewRoute] = useState<RouteType>({
     name: "",
     date: "",
@@ -87,8 +90,8 @@ const AddRoute = () => {
           placeholder="0"
           value={newRoute.distance}
           onChange={(event) => {
-            setNewRoute({...newRoute, distance: Number(event.target.value)})
-            // distance: Number(event.target.value)}) 
+            setNewRoute({ ...newRoute, distance: Number(event.target.value) });
+            // distance: Number(event.target.value)})
             // преобразовываем строку в число
           }}
         />
@@ -116,7 +119,7 @@ const AddRoute = () => {
           placeholder="Например, у входа в парк"
           value={newRoute.start}
           onChange={(event) => {
-            setNewRoute({...newRoute, start: event.target.value})
+            setNewRoute({ ...newRoute, start: event.target.value });
           }}
         />
         <p>Укажите понятный ориентир</p>
@@ -129,19 +132,36 @@ const AddRoute = () => {
         <textarea
           className={styles.importantDetails}
           placeholder="Опишите темп, покрытие и важные детали маршрута"
-           value={newRoute.description}
+          value={newRoute.description}
           onChange={(event) => {
-            setNewRoute({...newRoute, description: event.target.value})
+            setNewRoute({ ...newRoute, description: event.target.value });
           }}
         />
         <p>До 240 символов</p>
       </div>
       {/* </div> */}
       <Button img={rotateIcon}>Очистить</Button>
-      <button onClick={(e)=> {
-        e.preventDefault()
-        dispatch({type: 'ADD_ROUTE', payload: newRoute})
-      }}>Добавить</button>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          dispatch({ type: "ADD_ROUTE", payload: newRoute });
+          // localStorage.setItem('allRoutes', JSON.stringify(routes))
+          // JSON.stringify - преобразует массивы и объекты в строки без потери данных
+          // JSON.parse - строки которые по своей структуре похожи на массивы
+          // и объекты преобразуем в массивы и объекты
+          setNewRoute({
+            name: "",
+            date: "",
+            distance: 0,
+            level: "Легко",
+            start: "",
+            description: "",
+            id: Date.now(),
+          });
+        }}
+      >
+        Добавить
+      </button>
       <div>
         <img src={hardDrive} alt="hardDrive" />
         <p>Данные хранятся локально и восстановятся после перезагрузки.</p>
