@@ -4,14 +4,18 @@ import { RouteType } from "../../../store/routeReducer";
 import easyLevel from "../../../assets/icons/leaf.png";
 import middleLevel from "../../../assets/icons/gauge-speed.png";
 import hardLevel from "../../../assets/icons/mountain.png";
+import { useTypeDispatch } from "../../../helpers/redaxHelpers";
 
 interface RideCardProps {
   route: RouteType;
 }
 
+
+
 // interface RideCardProps описывает какие props и какого типа ожидает
 
 const RideCard = ({ route }: RideCardProps) => {
+  const dispatch = useTypeDispatch()
   let level;
 
   const date = new Date(route.date);
@@ -69,7 +73,12 @@ const RideCard = ({ route }: RideCardProps) => {
           Редактировать
         </button>
 
-        <button type="button" className={styles.delete}>
+        <button type="button" className={styles.delete} onClick={()=> {
+          dispatch({
+            type: 'DELETE_ROUTE',
+            payload: route.id
+          })
+        }}>
           Удалить
         </button>
       </div>
