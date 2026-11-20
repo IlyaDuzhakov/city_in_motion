@@ -12,7 +12,9 @@ type AddRouteAction = {
 
 type EditRouteAction = {
     type: typeof EDIT_ROUTE,
-    payload: number
+    payload: {id: number, editData: RouteType} 
+    // мы в качестве данных передаем объект с id маршрута 
+    // и измененными данными
     // id type number
 }
 

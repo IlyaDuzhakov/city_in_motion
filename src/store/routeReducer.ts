@@ -71,8 +71,18 @@ export const routeReducer = (
       localStorage.setItem('addRoutes', 
         JSON.stringify(filterRoutes)
       )
+    
       return filterRoutes
-
+    case "EDIT_ROUTE":
+      const editRoutes = state.map((route)=> {
+        if (route.id === action.payload.id) {
+          return action.payload.editData
+        }
+        else {
+          return route
+        }
+      })
+      return editRoutes
 
       // [...state.filter((route)=> route.id !== action.payload)] cоздаем
       // новый массив в который добавляем все маршруты кроме того который 
