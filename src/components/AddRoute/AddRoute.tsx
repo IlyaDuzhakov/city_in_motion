@@ -8,16 +8,21 @@ import middleIcon from "../../assets/icons/gauge-speed.png";
 import hardIcon from "../../assets/icons/mountain.png";
 import { LevelType } from "../Button/ButtonLevel";
 import rotateIcon from "../../assets/icons/rotate.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RouteType } from "../../store/routeReducer";
 import { useTypeDispatch } from "../../helpers/redaxHelpers";
-// import { useSelector } from "react-redux";
+
+import { useSelector } from "react-redux";
 
 const AddRoute = () => {
   const dispatch = useTypeDispatch();
+  //@ts-ignore
+  const { isEdit, id } = useSelector((state) => state.main);
+  // console.log(isEdit)
+  //@ts-ignore
+  const allRoutes = useSelector((state) => state.route);
+  // console.log(test)
 
-  
-   
   const [newRoute, setNewRoute] = useState<RouteType>({
     name: "",
     date: "",
@@ -28,6 +33,28 @@ const AddRoute = () => {
     id: Date.now(),
   });
   // console.log(newRoute)
+  useEffect(() => {
+    // console.log(id)
+    if (id !== null) {
+      const updateRoute = allRoutes.find((el: RouteType) => {
+        return el.id === id;
+      });
+
+      // console.log(updateRoute);
+      setNewRoute(updateRoute)
+    }
+    else {
+      setNewRoute({
+    name: "",
+    date: "",
+    distance: 0,
+    level: "Легко",
+    start: "",
+    description: "",
+    id: Date.now(),
+  })
+    }
+  }, [id, isEdit]);
 
   type LevelsType = {
     img: string;
@@ -42,7 +69,9 @@ const AddRoute = () => {
     <form>
       <div>
         <Button />
-        <h2>Добавить маршрут</h2>
+        <h2>
+          {isEdit === false ? "Добавить маршрут" : "Редактировать маршрут"}
+        </h2>
         <span>Новая прогулка сохранится только в этом браузере</span>
       </div>
       <div>

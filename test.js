@@ -41,3 +41,26 @@ editRoute({id: 2, info: {
   description: "описание",
   id: 2,
 }});
+
+
+const a = 2
+const b = 4
+const c = 10
+
+
+
+//const smallNumber = a < b && a < c ? a : b < a && b < c ? b : c 
+// пример сложного (вложеного) тернарного оператора
+// console.log(smallNumber)
+
+let smallNumber 
+if (a < b && a < c) {
+  smallNumber = a
+}
+else if (b < a && b < c) {
+  smallNumber = b
+}
+else {
+  smallNumber = c
+}
+console.log(smallNumber)

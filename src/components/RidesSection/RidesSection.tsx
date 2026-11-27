@@ -7,7 +7,7 @@ import AddRoute from "../AddRoute/AddRoute";
 import { useTypeDispatch } from "../../helpers/redaxHelpers";
 
 const RidesSection = () => {
-  const dispatch = useTypeDispatch();
+  
   //@ts-ignore
   const routes = useSelector((state) => state.route);
   console.log(routes)
