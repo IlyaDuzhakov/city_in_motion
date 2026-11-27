@@ -8,8 +8,9 @@ import { useTypeDispatch } from "../../helpers/redaxHelpers";
 
 const RidesSection = () => {
   const dispatch = useTypeDispatch();
-  const routes = useSelector((state) => state);
-  // console.log(routes)
+  //@ts-ignore
+  const routes = useSelector((state) => state.route);
+  console.log(routes)
 
   return (
     <section id="rides" className={styles.section}>

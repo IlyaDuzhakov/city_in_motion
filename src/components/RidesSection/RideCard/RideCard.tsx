@@ -69,7 +69,12 @@ const RideCard = ({ route }: RideCardProps) => {
       <p className={styles.location}>{route.start}</p>
 
       <div className={styles.actions}>
-        <button type="button" className={styles.edit}>
+        <button type="button" className={styles.edit} onClick={()=> {
+           dispatch({
+            type: "ON_EDIT",
+            payload: route.id
+           })
+        }}>
           Редактировать
         </button>
 
